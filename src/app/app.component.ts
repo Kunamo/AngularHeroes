@@ -1,10 +1,13 @@
+//Automatically imports after ng generate component <componentName>
 import { Component } from '@angular/core';
 
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+@Component({ // Components metadata
+  selector: 'app-root', // html selector
+  templateUrl: './app.component.html', // view
+  styleUrls: ['./app.component.css']  // css
 })
+
 export class AppComponent {
+  // Component properties
   title = 'Tour Of Heroes';
 }

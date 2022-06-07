@@ -1,16 +1,16 @@
 <!-- Bind object. Piping-->
 <div>
-  <h2>{{ObjectHero.name | uppercase}}</h2>
-  <p>id: {{ObjectHero.id}}</p>
-  <p>description: {{ObjectHero.description}}</p>
+  <h2>{{Object.name | uppercase}}</h2>
+  <p>id: {{Object.id}}</p>
+  <p>description: {{Object.description}}</p>
 </div>
 
 <!-- Input data binding to object property w/ "[(ngModel)]" -->
 <div>
-  <label for="name">Hero-Name: </label>
+  <label for="name">Change Name: </label>
   <!-- Input with [(ngModel)]-->
-  <input id="name" [(ngModel)]="ObjectHero.name" placeholder="heroname">
+  <input id="name" [(ngModel)]="Object.name" placeholder="object name">
 </div>
 
 <!-- Standalone -->
-<p>{{StringHero}}</p>
+<p>{{SingleStringPropertyOfHeroComponent}}</p>

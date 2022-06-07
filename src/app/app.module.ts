@@ -11,7 +11,7 @@ import {FormsModule} from "@angular/forms";
     AppComponent,
     HeroesComponent
   ],
-  imports: [ // External Imports
+  imports: [ // External Imports for the app
     BrowserModule,
     AppRoutingModule,
     FormsModule

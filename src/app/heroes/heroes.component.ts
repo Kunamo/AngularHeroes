@@ -1,20 +1,27 @@
-import { Component, OnInit } from '@angular/core'; //Component import -> Automatically here after 'ng generate component <compName>'
-import { InterfaceHero } from '../interface-hero'; //Import Interface called Hero, no ng generate
+// Auto import after 'ng generate component <componentName>'
+import { Component, OnInit } from '@angular/core';
 
-@Component({ //CLI generated metadata:
-  selector: 'app-heroes', // component's css element selector
-  templateUrl: './heroes.component.html', // location component's template file
-  styleUrls: ['./heroes.component.css'] // location component's private css styles
+// Import interface "InterfaceHero", to be able to create objects of that interface (almost like an constructor)
+import { InterfaceObject } from '../interface-object'; //Import Interface called Hero, no ng generate
+
+@Component({ // Components metadata:
+  selector: 'app-heroes', // html selector
+  templateUrl: './heroes.component.html', // view
+  styleUrls: ['./heroes.component.css'] // style
 })
 export class HeroesComponent implements OnInit {
-  // Properties of Component "HeroesComponent"
-  ObjectHero: InterfaceHero = {
-    id: 1,
-    name: "Object Hero",
-    description: "I need special reference (e.g: ObjectHero.description) so that I'll get displayed correctly"
+  // Components properties (HeroesComponent)
+
+  // Use interface "InterfaceHero" to create object according to scheme.
+  // name Object "ObjectHero" and give it the type "InterfaceHero"
+  Object: InterfaceObject = {
+    // Follow the scheme of "InterfaceHero"
+    id: 1, // id int
+    name: "Object", // name string
+    description: "Refer to objects (such like myself) in 'content' from 'view' by: {{objectName.property}}. Thats how you display objects content specified in 'content', in the 'view'" // description string
   };
 
-  StringHero = "String Hero";
+  SingleStringPropertyOfHeroComponent = "I'm a String!";
 
   constructor() {
   }

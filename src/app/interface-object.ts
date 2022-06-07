@@ -1,5 +1,5 @@
 // Interface to create objects in any component.
-export interface InterfaceHero {
+export interface InterfaceObject {
   id: number;
   name: string;
   description: string;
