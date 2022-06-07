@@ -1,0 +1,11 @@
+<!-- Reference an object property -->
+<h2>{{ObjectHero.name | uppercase}}</h2>
+<!-- span is not necessary and object.property-->
+<div><span>id: </span> {{ObjectHero.id}}</div>
+<div><span>description: </span> {{ObjectHero.description}}</div>
+<p>{{StringHero}}</p>
+
+<div>
+  <label for="name">Hero name: </label>
+  <input id="name" [(ngModel)]="ObjectHero.name" placeholder="name">
+</div>
