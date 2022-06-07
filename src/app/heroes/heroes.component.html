@@ -1,11 +1,16 @@
-<!-- Reference an object property -->
-<h2>{{ObjectHero.name | uppercase}}</h2>
-<!-- span is not necessary and object.property-->
-<div><span>id: </span> {{ObjectHero.id}}</div>
-<div><span>description: </span> {{ObjectHero.description}}</div>
-<p>{{StringHero}}</p>
-
+<!-- Bind object. Piping-->
 <div>
-  <label for="name">Hero name: </label>
-  <input id="name" [(ngModel)]="ObjectHero.name" placeholder="name">
+  <h2>{{ObjectHero.name | uppercase}}</h2>
+  <p>id: {{ObjectHero.id}}</p>
+  <p>description: {{ObjectHero.description}}</p>
 </div>
+
+<!-- Input data binding to object property w/ "[(ngModel)]" -->
+<div>
+  <label for="name">Hero-Name: </label>
+  <!-- Input with [(ngModel)]-->
+  <input id="name" [(ngModel)]="ObjectHero.name" placeholder="heroname">
+</div>
+
+<!-- Standalone -->
+<p>{{StringHero}}</p>

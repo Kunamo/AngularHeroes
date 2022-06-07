@@ -1,6 +1,5 @@
-// ng generate component heroes
-import { Component, OnInit } from '@angular/core'; //Always if generated new component.
-import { Hero } from '../hero';
+import { Component, OnInit } from '@angular/core'; //Component import -> Automatically here after 'ng generate component <compName>'
+import { InterfaceHero } from '../interface-hero'; //Import Interface called Hero, no ng generate
 
 @Component({ //CLI generated metadata:
   selector: 'app-heroes', // component's css element selector
@@ -9,14 +8,13 @@ import { Hero } from '../hero';
 })
 export class HeroesComponent implements OnInit {
   // Properties of Component "HeroesComponent"
-
-  ObjectHero: Hero = {
+  ObjectHero: InterfaceHero = {
     id: 1,
-    name: "I'm an object hero",
+    name: "Object Hero",
     description: "I need special reference (e.g: ObjectHero.description) so that I'll get displayed correctly"
   };
 
-  StringHero = "I'm a string";
+  StringHero = "String Hero";
 
   constructor() {
   }
