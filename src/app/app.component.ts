@@ -9,5 +9,5 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   // Component properties
-  title = 'Tour Of Heroes';
+  title = 'The Heroes App';
 }

@@ -1,0 +1,9 @@
+<div *ngIf="hero">
+  <h2>{{hero.name | uppercase}}</h2>
+  <p>id: {{hero.id}}</p>
+  <div>
+    <label for="name">Change Name: </label>
+    <!-- Two Data Bindig with ngModel -->
+    <input id="name" [(ngModel)]="hero.name" placeholder="hero name">
+  </div>
+</div>
