@@ -1,50 +1,45 @@
-// Auto import after 'ng generate component <componentName>'
+import { Component, OnInit } from '@angular/core'; // Boilerplate after 'ng generate component <componentName>'
+import { HeroService } from '../hero.service'; // Import And Define HeroService
+import { MessageService } from '../message.service'; // Import And Define MessageService
+import { Hero } from '../hero'; // Import And Define Hero - Interface => To create objects of that interface in here
 
-// It's a component, with it's own style, typescript and view.
-import { Component, OnInit } from '@angular/core';
-
-// Import the list called "HEROES" in mock-heroes.ts
-import { HeroService } from '../hero.service';
-
-// Import interface "InterfaceHero", to be able to create objects of that interface (almost like an constructor)
-import { Hero } from '../hero'; //Import Interface called Hero, no ng generate
-
-@Component({ // Components metadata:
+// It's a component, with its own style, typescript and view.
+@Component({ // Components metadata annotation
   selector: 'app-heroes', // html selector
   templateUrl: './heroes.component.html', // view
   styleUrls: ['./heroes.component.css'] // style
 })
 
-
+// Where the properties of the component go.
 export class HeroesComponent implements OnInit {
 
-  selectedHero?:Hero;
-  onSelect(hero:Hero):void{
-    this.selectedHero = hero;
-  }
-
-  // Components properties (HeroesComponent)
-
-  // Use interface "InterfaceObject" to create object according to the interface's scheme.
-  // name Object "InterfaceObject" and give it the type "InterfaceHero"
+  // A single property:
+  // StringProperty = "I'm a String!";
+  // Define in HTML of component as:
+  // TODO: Have to find out how to do this in HTML.
 
   // Make use of Native HTML Elements, as much as possible ->> for better accessibility.
 
-  // A single property
-  SingleStringPropertyOfHeroComponent = "I'm a String!";
+  selectedHero?:Hero;
+  heroes: Hero[] = []; // From Hero.ts
 
-  // Assign to variable to expose for binding.
-  heroes: Hero[] = [];
-
-  getHeroes(): void {
-    this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
-  }
-
-  constructor(private heroService: HeroService) {
+  // Inject HeroService and MessageService in the component.
+  constructor(private heroService: HeroService, private messageService: MessageService) {
   }
 
   ngOnInit(): void { // lifecycle hook -> Good place to put initialization logic.
-    this.getHeroes();
+    this.getHeroes(); // On initialzation of this component, execute get function.
   }
 
+  getHeroes(): void {
+    /* Component (HeroComponent) subscribes to singleton of the service "HeroService" and executes its getHeroes() function
+      to put the data in this' component's heroes property. Defined on Line 24 (heroes: Hero[] = [];). It has the type of
+      Hero and is in this component known as an empty array */
+    this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
+  }
+
+  onSelect(hero: Hero): void{
+    this.selectedHero = hero;
+    this.messageService.add(`HeroService: Selected hero id=${hero.id}`);
+  }
 }

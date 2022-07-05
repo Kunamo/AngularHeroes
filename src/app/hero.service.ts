@@ -9,10 +9,15 @@ import { MessageService } from './message.service';
 })
 export class HeroService {
   getHeroes(): Observable<Hero[]> {
+
+    // simulate getMethod with of() from rxjs, which returns an Observable. In RL you would get data from a server.
     const heroes = of(HEROES)
+
+    // Use singleton of messageService to send message to subscribers. // TODO: Confirm validity of this comment
     this.messageService.add('HeroService: fetched heroes');
     return heroes;
   }
-  //Service in Service
+
+  // Inject MessageService in Service to use.
   constructor(private messageService: MessageService) { }
 }
