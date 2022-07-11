@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'; // Boilerplate after 'ng generate component <componentName>'
+import { Hero } from '../hero'; // Import And Define Hero - Interface => To create objects of that interface in here
 import { HeroService } from '../hero.service'; // Import And Define HeroService
 import { MessageService } from '../message.service'; // Import And Define MessageService
-import { Hero } from '../hero'; // Import And Define Hero - Interface => To create objects of that interface in here
 
 // It's a component, with its own style, typescript and view.
 @Component({ // Components metadata annotation
@@ -20,7 +20,7 @@ export class HeroesComponent implements OnInit {
 
   // Make use of Native HTML Elements, as much as possible ->> for better accessibility.
 
-  selectedHero?:Hero;
+  selectedHero?:Hero; // ? means that value can be null or undefined (optional)
   heroes: Hero[] = []; // From Hero.ts
 
   // Inject HeroService and MessageService in the component.
@@ -29,6 +29,7 @@ export class HeroesComponent implements OnInit {
 
   ngOnInit(): void { // lifecycle hook -> Good place to put initialization logic.
     this.getHeroes(); // On initialzation of this component, execute get function.
+    //console.log("Selected Hero: "+ this.selectedHero);
   }
 
   getHeroes(): void {
@@ -36,10 +37,5 @@ export class HeroesComponent implements OnInit {
       to put the data in this' component's heroes property. Defined on Line 24 (heroes: Hero[] = [];). It has the type of
       Hero and is in this component known as an empty array */
     this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
-  }
-
-  onSelect(hero: Hero): void{
-    this.selectedHero = hero;
-    this.messageService.add(`HeroService: Selected hero id=${hero.id}`);
   }
 }
