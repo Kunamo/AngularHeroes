@@ -38,4 +38,17 @@ export class HeroesComponent implements OnInit {
       Hero and is in this component known as an empty array */
     this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
   }
+
+  add(name: string):void {
+    name = name.trim(); // trim() removes whitespaces from both ends
+    if (!name) { return; } // if name empty don't even do anything
+    this.heroService.addHero({ name } as Hero).subscribe(hero => {
+      this.heroes.push(hero);
+    });
+  }
+
+  delete(hero: Hero): void {
+    this.heroes = this.heroes.filter(h => h !== hero);
+    this.heroService.deleteHero(hero.id).subscribe();
+  }
 }

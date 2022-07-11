@@ -12,6 +12,7 @@ import { HeroService } from '../hero.service';
 export class HeroDetailComponent implements OnInit {
   // <app-hero-detail [hero]="selectedHero"></app-hero-detail>
 
+  // Initialize hero but undefined
   hero: Hero | undefined;
   //hero?: Hero; // default: undefined
 
@@ -34,5 +35,11 @@ export class HeroDetailComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  save(): void {
+    if (this.hero) {
+      this.heroService.updateHero(this.hero).subscribe(() => this.goBack());
+    }
   }
 }
