@@ -20,7 +20,9 @@ import { MessagesComponent } from './messages/messages.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    // no need to place any providers due to the `providedIn` flag
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
