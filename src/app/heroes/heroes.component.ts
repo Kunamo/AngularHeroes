@@ -15,8 +15,6 @@ export class HeroesComponent implements OnInit {
 
   // A single property:
   // StringProperty = "I'm a String!";
-  // Define in HTML of component as:
-  // TODO: Have to find out how to do this in HTML.
 
   // Make use of Native HTML Elements, as much as possible ->> for better accessibility.
 
@@ -27,15 +25,18 @@ export class HeroesComponent implements OnInit {
   constructor(private heroService: HeroService, private messageService: MessageService) {
   }
 
-  ngOnInit(): void { // lifecycle hook -> Good place to put initialization logic.
-    this.getHeroes(); // On initialzation of this component, execute get function.
-    //console.log("Selected Hero: "+ this.selectedHero);
+  // lifecycle hook -> Good place to put initialization logic.
+  ngOnInit(): void {
+    // On initialization of this component, execute get function.
+    this.getHeroes();
+    // Debugging: console.log("Selected Hero: "+ this.selectedHero);
   }
 
   getHeroes(): void {
-    /* Component (HeroComponent) subscribes to singleton of the service "HeroService" and executes its getHeroes() function
-      to put the data in this' component's heroes property. Defined on Line 24 (heroes: Hero[] = [];). It has the type of
-      Hero and is in this component known as an empty array */
+    /** Component (HeroComponent) subscribes to singleton of the service "HeroService" and executes its getHeroes() function
+     * to put the data in this' component's heroes property. Defined on Line 24 (heroes: Hero[] = [];). It has the type of
+     * Hero and is in this component known as an empty array
+     */
     this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
   }
 

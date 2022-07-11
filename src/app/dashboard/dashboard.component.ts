@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
     this.getHeroes();
   }
 
+  // only show 4 heroes (with slice function for heroes array)
   getHeroes(): void {
     // slice modifies observable data (1,4), (possibility to directly modify returned data)
     this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes.slice(1,5));

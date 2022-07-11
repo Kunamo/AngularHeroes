@@ -24,19 +24,17 @@ export class HeroService {
 
 
   getHeroes(): Observable<Hero[]> {
-    // simulate getMethod with of() from rxjs, which returns an Observable. In RL you would get data from a server. -> Now real due http.get()
-    //const heroes = of(HEROES)
-    // http.get is typical fo observable -> get JSON (default: untyped; <HERO[]> TS & less errors during compiling)
-    return this.http.get<Hero[]>(this.heroesUrl)
+    // http.get is typical for observable -> get JSON back (default: untyped)
+    // type <HERO[]> because it opens Typescript possibilities & fewer errors during compilation)
+    return this.http.get<Hero[]>(this.heroesUrl) // http.put | http.post | http.delete
       .pipe(
-        tap(_ => this.log('fetched heroes')),
+        tap(_ => this.log('fetched heroes')), // do something before returning (has no impact on observable itself)
         //map(heroes => heroes.map(hero => ({ ...hero }))),
         catchError(this.handleError<Hero[]>('getHeroes', [])) // Could also just do console.log();
       );
 
-    /*
-    Other APIs may bury the data that you want within an object. You might have to dig that data out by processing the Observable result with the RxJS map() operator.
-    Although not discussed here, there's an example of map() in the getHeroNo404() method included in the sample source code.
+    /**
+     * Other APIs may bury the data that you want within an object. You might have to dig that data out by processing the Observable result with the RxJS map() operator.
      */
   }
 
@@ -56,6 +54,7 @@ export class HeroService {
     );
   }
 
+  // http.put
   updateHero(hero: Hero): Observable<any> {
     return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
       tap(_ => this.log(`updated hero id=${hero.id}`)),
@@ -63,6 +62,7 @@ export class HeroService {
     )
   }
 
+  // http.post
   addHero(hero: Hero):Observable<Hero>{
     return this.http.post<Hero>(this.heroesUrl, hero, this.httpOptions).pipe(
       tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
@@ -70,6 +70,7 @@ export class HeroService {
     );
   }
 
+  // http.delete
   deleteHero(id: Number): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
 
@@ -79,10 +80,7 @@ export class HeroService {
     );
   }
 
-  private log(message: string) {
-    this.messageService.add(`HeroService: ${message}`);
-  }
-
+  // Search function
   searchHeroes(term: string): Observable<Hero[]>{
     if (!term.trim()) {
       return of([]);
@@ -95,13 +93,7 @@ export class HeroService {
     );
   }
 
-  /**
-   * Handle Http operation that failed.
-   * Let the app continue.
-   *
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
-   */
+  // Error Handling
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
@@ -113,8 +105,12 @@ export class HeroService {
 
       // Let the app keep running by returning an empty result.
 
-      // Returns an empty observable, so the app doesn't crash. ON ERROR
-      return of(result as T);
+      return of(result as T);// Returns an empty observable, so the app doesn't crash. ON ERROR
     };
+  }
+
+  // just a silly message
+  private log(message: string) {
+    this.messageService.add(`HeroService: ${message}`);
   }
 }

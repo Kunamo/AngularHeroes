@@ -1,5 +1,4 @@
 <div *ngIf="hero">
-  <button type="button" (click)="goBack()">go back</button>
   <h2>{{hero.name | uppercase}}</h2>
   <p>id: {{hero.id}}</p>
   <div>
@@ -7,5 +6,8 @@
     <!-- Two Data Bindig with ngModel -->
     <input id="name" [(ngModel)]="hero.name" placeholder="hero name">
   </div>
+  <!--  Execute save method in component-->
   <button type="button" (click)="save()">save</button>
+  <!--  Executing goBack method in component: this.location.back() -->
+  <button type="button" (click)="goBack()">go back</button>
 </div>

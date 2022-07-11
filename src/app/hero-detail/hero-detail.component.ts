@@ -9,10 +9,9 @@ import { HeroService } from '../hero.service';
   templateUrl: './hero-detail.component.html',
   styleUrls: ['./hero-detail.component.css']
 })
-export class HeroDetailComponent implements OnInit {
-  // <app-hero-detail [hero]="selectedHero"></app-hero-detail>
 
-  // Initialize hero but undefined
+export class HeroDetailComponent implements OnInit {
+  // Initialize undefined variable
   hero: Hero | undefined;
   //hero?: Hero; // default: undefined
 
@@ -25,21 +24,27 @@ export class HeroDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getHero();
-    console.log("Selected Hero: "+ this.hero);
+    // Debugging: console.log("Selected Hero: "+ this.hero);
   }
 
+  // to get hero from URL
   getHero():void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
+    // subscribe to getHero (it's an observable)
     this.heroService.getHero(id).subscribe(hero => this.hero = hero);
   }
 
-  goBack(): void {
-    this.location.back();
-  }
-
+  // to save hero to server
   save(): void {
     if (this.hero) {
+      // subscribe to updateHero (it's an observable)
       this.heroService.updateHero(this.hero).subscribe(() => this.goBack());
     }
+  }
+
+  // for going back to previous view (doesn't matter where you came from)
+  goBack(): void {
+    // to go back
+    this.location.back();
   }
 }

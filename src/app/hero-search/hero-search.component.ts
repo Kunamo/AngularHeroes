@@ -1,3 +1,7 @@
+/**
+ * Whole thing is very abstract.
+ */
+
 import { Component, OnInit } from '@angular/core';
 
 import { Observable, Subject } from 'rxjs';
