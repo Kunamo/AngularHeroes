@@ -1,15 +1,19 @@
+<h3>Slicer</h3>
+
+<label for="start">Start from:</label>
+<input id="start" type="text" #start [valueAsNumber]="slice.start" (input)="set(start.value, end.value)"/>
+
+<label for="end">End at:</label>
+<input id="end" type="text" #end [valueAsNumber]="slice.end" (input)="set(start.value, end.value)"/>
+
+<!--<button type="button">Enter</button>-->
+
 <h2>Top Heroes</h2>
-<div class="heroes-menu">
+<div *ngIf="set" class="heroes-menu">
   <a *ngFor="let hero of heroes"
   routerLink="/detail/{{hero.id}}"> <!-- corresponding to /detail/:id in app-routing.module -->
     {{hero.name}}
   </a>
 </div>
-
-<h3>Slicer</h3>
-<label for="startN">Start from:</label>
-<input id="startN" type="number" [(ngModel)]="startN" (click)="checkValues()"/>
-<label for="endN">End at:</label>
-<input id="endN" type="number" [(ngModel)]="endN" (click)="checkValues()"/>
 
 <app-hero-search></app-hero-search>

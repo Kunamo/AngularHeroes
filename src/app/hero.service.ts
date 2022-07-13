@@ -41,7 +41,6 @@ export class HeroService {
   getHero(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
 
-    // might crash if id doesn't exist
     // h are heroes in HEROS -> if h.id = id (Param from method)
     const hero = HEROES.find(h => h.id === id)!;
 
@@ -92,6 +91,20 @@ export class HeroService {
       catchError(this.handleError<Hero[]>('searchHeroes', []))
     );
   }
+
+  //class Employee {
+  //     empCode: number;
+  //     empName: string;
+  //
+  //     constructor(code: number, name: string) {
+  //         this.empName = name;
+  //         this.empCode = code;
+  //     }
+  //
+  //     display = () => console.log(this.empCode +' ' + this.empName)
+  // }
+  // let emp = new Employee(1, 'Ram');
+  // emp.display();
 
   // Error Handling
   private handleError<T>(operation = 'operation', result?: T) {
