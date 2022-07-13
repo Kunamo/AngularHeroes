@@ -11,6 +11,7 @@ import { HeroService } from '../hero.service';
 })
 
 export class HeroDetailComponent implements OnInit {
+
   // Initialize undefined variable
   hero: Hero | undefined;
   //hero?: Hero; // default: undefined

@@ -9,8 +9,25 @@ import { HeroService } from '../hero.service';
 })
 
 export class DashboardComponent implements OnInit {
+
+  startN: number = 1;
+  endN: number = 4;
+
+  checkValues(): void {
+    if (! this.startN == null && ! this.endN == null) {
+      this.getHeroes();
+    }
+    else
+    {
+      console.log("Please enter valid values");
+    }
+  }
+
+
   heroes: Hero[] = [];
-  constructor(private heroService:HeroService) { }
+
+  constructor(private heroService: HeroService) {
+  }
 
   ngOnInit(): void {
     this.getHeroes();
@@ -19,6 +36,6 @@ export class DashboardComponent implements OnInit {
   // only show 4 heroes (with slice function for heroes array)
   getHeroes(): void {
     // slice modifies observable data (1,4), (possibility to directly modify returned data)
-    this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes.slice(1,5));
+    this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes.slice(this.startN, this.endN));
   }
 }

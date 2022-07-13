@@ -6,4 +6,10 @@
   </a>
 </div>
 
+<h3>Slicer</h3>
+<label for="startN">Start from:</label>
+<input id="startN" type="number" [(ngModel)]="startN" (click)="checkValues()"/>
+<label for="endN">End at:</label>
+<input id="endN" type="number" [(ngModel)]="endN" (click)="checkValues()"/>
+
 <app-hero-search></app-hero-search>

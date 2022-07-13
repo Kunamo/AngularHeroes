@@ -1,4 +1,6 @@
 <h2>All Heroes</h2>
+
+<!-- showing hero list -->
 <ul class="heroes ">
   <li *ngFor="let hero of heroes">
     <!-- anchor element to /detail/hero.id, then inside the id and name, and a delete button -->
@@ -9,6 +11,7 @@
   </li>
 </ul>
 
+<!-- Adding a new hero -->
 <div>
   <label for="new-hero">Hero Name: </label>
   <!-- #heroname is for referencing to it later -->
