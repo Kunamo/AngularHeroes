@@ -23,7 +23,9 @@ export class DashboardComponent implements OnInit {
       console.log("Please enter a number");
     }
     this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes.slice(numberValueStart, numberValueEnd));
-    // Event handling (for example, when entering negative number)
+    // TODO: Event handling (for example, when entering negative number)
+    // TODO: Save initial getHeroes() data in variable and slice off from that variable on.
+    // TODO: Maybe use the object "slice" a little bit more efficiently?
   }
 
   heroes: Hero[] = [];
